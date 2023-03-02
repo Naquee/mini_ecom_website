@@ -2,14 +2,14 @@ import { SimpleGrid, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Filter from '../components/Filter'
-import ProductsCart from '../components/ProductsCart'
+import ProductsCard from '../components/ProductsCard'
 import { getData } from '../Redux/Products/action'
 
 const Shoap = () => {
-  const products = useSelector((state) => state.products)
-  const loading = useSelector((state) => state.loading)
-  const error = useSelector((state) => state.error)
-  console.log(products)
+  const products = useSelector((state) => state.product.products)
+  const loading = useSelector((state) => state.product.loading)
+  const error = useSelector((state) => state.product.error)
+  // console.log(products)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Shoap = () => {
         :<SimpleGrid columns={[1,2,3]}>
           {
             products.length>0 && products.map((product) => {
-              return <ProductsCart key={product.id} product={product}/>
+              return <ProductsCard key={product.id} product={product}/>
             })
           }
         </SimpleGrid>
